@@ -19,6 +19,7 @@ class Subject(models.Model):
     code = models.CharField(max_length=7)
     name = models.CharField(max_length=150)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name="teacher")
+    semester = models.PositiveIntegerField(default=1, validators=[MaxValueValidator(3), MinValueValidator(1)])
     max_seat = models.PositiveIntegerField(default=100, validators=[MaxValueValidator(100), MinValueValidator(1)])
     active = models.BooleanField(default=True)
     enroll = models.ManyToManyField(User, blank=True, related_name="enroll")
