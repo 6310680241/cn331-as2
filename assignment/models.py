@@ -27,8 +27,8 @@ class Subject(models.Model):
         teacher = get_object_or_404(User, id=self.teacher.id)
         if teacher.is_teacher is not True:
             raise ValueError('Selected user must be teacher')
-        if len(self.enroll) >= self.max_seat:
-            raise ValueError('Full')
+        # if "enroll" in self and self.enroll.count() >= self.max_seat:
+        #     raise ValueError('Full')
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
