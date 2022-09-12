@@ -1,0 +1,5 @@
+<h1>Hello</h1>
+
+{% for subject in subjects %}
+    <li><b>{{ subject.code }}</b> {{ subject.name }} <i>({{ subject.enroll.all.count }} / {{ subject.max_seat }})</i></li>
+{% endfor %}
