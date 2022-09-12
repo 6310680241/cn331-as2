@@ -75,7 +75,18 @@ WSGI_APPLICATION = 'assignment.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_assignment',
+        'USER': 'doadmin',
+        'PASSWORD': 'AVNS_raRQjQEvouLfn1o',
+        'HOST': 'mysql-playground-do-user-2828457-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }
+    },
+    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
