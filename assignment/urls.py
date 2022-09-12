@@ -17,11 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from . import views, controller
 
+
 urlpatterns = [
-    path('', views.index),
-    path('subject/list', views.index, name="view-course"),
+    path('home/', views.index, name="home"),
+
+    path('login/', views.login_view, name="login"),
+    path('login/auth', views.logout_view, name="logout"),
+
+    path('subject/list', views.show_subj, name="view-course"),
     path('subject/request', controller.addCourse, name="add-course"),
-    
 
     # Admin Portal
     path('admin/', admin.site.urls),
