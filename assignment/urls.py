@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from . import views, controller
 
 urlpatterns = [
     path('', views.index),
+    path('subject/list', views.index, name="view-course"),
+    path('subject/request', controller.addCourse, name="add-course"),
+    
 
     # Admin Portal
     path('admin/', admin.site.urls),

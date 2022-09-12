@@ -1,5 +1,21 @@
+
+<body>
 <h1>Hello</h1>
 
 {% for subject in subjects %}
     <li><b>{{ subject.code }}</b> {{ subject.name }} <i>({{ subject.enroll.all.count }} / {{ subject.max_seat }})</i></li>
 {% endfor %}
+
+<hr />
+
+<form method="POST" action="{% url 'add-course' %}">
+    {% csrf_token %}
+    <select name="subject">
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.code }} - {{ subject.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add</button>
+</form>
+
+</body>
