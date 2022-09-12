@@ -1,11 +1,17 @@
-
+{% block content %}
 <body>
-<h1>Hello</h1>
+    <h1>Hello</h1>
+        
+    
 
 {% for subject in subjects %}
     <li><b>{{ subject.code }}</b> {{ subject.name }} <i>({{ subject.enroll.all.count }} / {{ subject.max_seat }})</i></li>
 {% endfor %}
 
+
+
+
+<span method="POST" action=""><a href="{% url 'logout' %}"> LOG OUT <br></span>
 <hr />
 
 <form method="POST" action="{% url 'add-course' %}">
@@ -19,3 +25,5 @@
 </form>
 
 </body>
+
+{% endblock %}
