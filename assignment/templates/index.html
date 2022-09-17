@@ -1,21 +1,53 @@
 
 <body>
-<h1>Hello</h1>
 
-{% for subject in subjects %}
-    <li><b>{{ subject.code }}</b> {{ subject.name }} <i>({{ subject.enroll.all.count }} / {{ subject.max_seat }})</i></li>
-{% endfor %}
+    <div>
+        ยินดีต้อนรับ
+        <b>{{ user.first_name }} {{ user.last_name }}</b>
+        {% if user.is_staff %}
+        <small style="color:red">[ADMIN]</small>
+        {% endif %}
+        [<a href="{% url 'logout' %}">ออกจากระบบ</a>]
+    </div>
+    
+    <h1>รายวิชา</h1>
 
-<hr />
-
-<form method="POST" action="{% url 'add-course' %}">
-    {% csrf_token %}
-    <select name="subject">
-        {% for subject in subjects %}
-            <option value="{{ subject.id }}">{{ subject.code }} - {{ subject.name }}</option>
+    {% if user.is_staff %}
+        {% for subject in all_subject %}
+            <li>
+                <span><b>{{ subject.code }}</b> {{ subject.name }} <i>({{ subject.enroll.all.count }}/{{ subject.max_seat }})</i> <small>{{ subject.credit }} Credit</small></span>
+                <ul>
+                    {% if subject.enroll.all.count <= 0 %}
+                        <i>No users</i>
+                    {% else %}
+                        {% for enroll in subject.enroll.all %}
+                            <li>[<a href="{% url 'admin-delete-course' subject.id user.id %}">x</a>] <b>({{ enroll.username }})</b> {{ enroll.first_name }} {{ enroll.last_name }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </li>
         {% endfor %}
-    </select>
-    <button type="submit">Add</button>
-</form>
+    {% else %}
+        <div style="margin-bottom:1em">
+        {% for subject in enrolled %}
+            <li>[<a href="{% url 'delete-course' subject.id %}">x</a>] <b>{{ subject.code }}</b> {{ subject.name }} <i>({{ subject.enroll.all.count }}/{{ subject.max_seat }})</i> <small>{{ subject.credit }} Credit</small></li>
+        {% endfor %}
+        </div>
+        <span>Total <b>{{ total_credit }}</b> Credit</span>
+    {% endif %}
+
+    <hr />
+
+    {% if not user.is_staff %}
+    <form method="POST" action="{% url 'view-course' %}">
+        {% csrf_token %}
+        <select name="subject" id="subject">
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.code }} - {{ subject.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">ขอโควตา</button>
+    </form>
+    {% endif %}
 
 </body>

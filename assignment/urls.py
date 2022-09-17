@@ -18,12 +18,12 @@ from django.urls import path
 from . import views, controller
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.course_index, name='view-course'),
     path('login', views.login_index, name='login'),
     path('logout', views.logout_index, name='logout'),
-    path('subject', views.index, name="view-course"),
+    path('subject/<int:id>/delete', views.course_delete, name="delete-course"),
+    path('subject/<int:id>/<int:user_id>/delete', views.course_delete, name="admin-delete-course"),
     
-
     # Admin Portal
     path('admin/', admin.site.urls),
 ]
