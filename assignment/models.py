@@ -2,14 +2,18 @@ from django.db import models
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import AbstractBaseUser
 
-class User(models.Model):
+class User(AbstractBaseUser):
+    id = models.IntegerField(primary_key=True)
     username = models.CharField(max_length=32)
-    password = models.CharField(max_length=128)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     is_teacher = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
+
+    is_authenticated = True
+    is_anonymous = False
 
     def __str__(self) -> str:
         teacherMark = u'\u2713' if self.is_teacher else ""
