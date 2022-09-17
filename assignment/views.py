@@ -29,6 +29,8 @@ def course_index(request):
 
 def course_delete(request, id, user_id = None):
     subjects = Subject.objects.get(pk=id)
-    user = User.objects.get(pk=user_id if user_id is not None and request.user.is_staff else request.user.id)
-    subjects.enroll.remove(user)
+    user_pk = user_id if user_id is not None and request.user.is_staff else request.user.id
+    user = User.objects.get(pk=user_pk)
+    if user is not None:
+        subjects.enroll.remove(user)
     return redirect('view-course')
