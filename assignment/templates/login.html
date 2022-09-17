@@ -4,15 +4,15 @@
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <div style="margin-bottom:0.5em" align="left">
-                <label>Username</label>
+                <label for="username">Username</label>
                 <div>
-                    <input style="width:100%" type="text" placeholder="Username" name="username" autocomplete="off" />
+                    <input style="width:100%" type="text" id="username" placeholder="Username" name="username" autocomplete="off" />
                 </div>
             </div>
             <div style="margin-bottom:0.5em" align="left">
-                <label>Password</label>
+                <label for="password">Password</label>
                 <div>
-                    <input style="width:100%" type="password" placeholder="Password" name="password" autocomplete="off" />
+                    <input style="width:100%" type="password" id="password" placeholder="Password" name="password" autocomplete="off" />
                 </div>
             </div>
             <div>
