@@ -17,7 +17,7 @@ def login_index(request):
 def course_index(request):
     if(request.method == "GET"):
         subjects = Subject.objects.filter(active=1)
-        enrolled = [subject for subject in subjects.filter(enroll__in=[request.user.id]) if subject.enroll.all().count() < subject.max_seat]
+        enrolled = [subject for subject in subjects.filter(enroll__in=[request.user.id])]
         total_credit = sum([enroll.credit for enroll in enrolled])
         return render(request, 'index.html', {
             'enrolled': enrolled,
