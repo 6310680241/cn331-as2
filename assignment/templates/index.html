@@ -21,7 +21,7 @@
                         <i>No users</i>
                     {% else %}
                         {% for enroll in subject.enroll.all %}
-                            <li>[<a href="{% url 'admin-delete-course' subject.id user.id %}">x</a>] <b>({{ enroll.username }})</b> {{ enroll.first_name }} {{ enroll.last_name }}</li>
+                            <li>[<a href="{% url 'admin-delete-course' subject.id enroll.id %}">x</a>] <b>({{ enroll.username }})</b> {{ enroll.first_name }} {{ enroll.last_name }}</li>
                         {% endfor %}
                     {% endif %}
                 </ul>
