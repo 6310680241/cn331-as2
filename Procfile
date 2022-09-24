@@ -1,0 +1,1 @@
+web: gunicorn --chdir ./assignment assignment.wsgi --log-file -
