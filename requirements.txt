@@ -16,3 +16,5 @@ uvicorn==0.18.3
 virtualenv==20.16.5
 Django==4.1.1
 mysqlclient==2.1.1
+gunicorn
+django-heroku
