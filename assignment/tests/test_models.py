@@ -10,7 +10,7 @@ class TestModels(TestCase):
         self.subject = Subject.objects.create(
             code = 'cn000',
             name = 'test model',
-            teacher = k,
+            teacher = self.k,
             semester = 1,
             max_seat = 100,
             credit = 3,
