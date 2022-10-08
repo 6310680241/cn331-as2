@@ -5,7 +5,7 @@ class TestModels(TestCase):
     
     def setUp(self):
 
-        k = User.objects.create(id=1, pk=2, username="tester", is_staff = True, is_active = True, is_superuser= False)
+        self.k = User.objects.create(id=1, pk=2, username="tester", is_staff = True, is_active = True, is_superuser= False)
 
         self.subject = Subject.objects.create(
             code = 'cn000',
